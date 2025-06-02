@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CircuitAura - Premium PCB Assembly Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --primary-light: #6366f1;
+      --secondary: #f59e0b;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --success: #10b981;
+      --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+      font-size: 18px; /* Increased base font size */
+    }
+    
+    h1, h2, h3, h4, h5 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo-icon {
+      font-size: 32px;
+      color: var(--secondary);
+    }
+    
+    .logo-text {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+    
+    .logo-text span {
+      color: var(--secondary);
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--secondary);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .nav-buttons {
+      display: flex;
+      gap: 20px;
+      margin-left: 30px;
+    }
+    
+    .btn {
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      font-size: 18px;
+    }
+    
+    .btn-primary {
+      background: var(--secondary);
+      color: var(--dark);
+    }
+    
+    .btn-primary:hover {
+      background: #e69008;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+    
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-3px);
+    }
+    
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(30, 41, 59, 0.9), rgba(30, 41, 59, 0.9)), 
+                  url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%234f46e5" opacity="0.1"/><path d="M0 50 Q25 30, 50 50 T100 50" stroke="%23f59e0b" stroke-width="0.5" fill="none"/><path d="M0 30 Q25 10, 50 30 T100 30" stroke="%23f59e0b" stroke-width="0.5" fill="none"/><path d="M0 70 Q25 50, 50 70 T100 70" stroke="%23f59e0b" stroke-width="0.5" fill="none"/></svg>');
+      background-size: cover;
+      background-position: center;
+      padding: 140px 0 100px;
+      color: white;
+      text-align: center;
+    }
+    
+    .hero-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-size: 4rem;
+      margin-bottom: 25px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+    
+    .hero p {
+      font-size: 1.6rem;
+      margin-bottom: 40px;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 50px;
+    }
+    
+    /* Features */
+    .features {
+      padding: 100px 0;
+      background: white;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+    
+    .section-title h2 {
+      font-size: 3rem;
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+    }
+    
+    .section-title p {
+      color: var(--gray);
+      max-width: 750px;
+      margin: 0 auto;
+      font-size: 1.3rem;
+      line-height: 1.7;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+    
+    .feature-card {
+      background: var(--light);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      text-align: center;
+      padding: 50px 30px;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .feature-icon {
+      width: 90px;
+      height: 90px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 30px;
+      color: white;
+      font-size: 36px;
+      transition: var(--transition);
+    }
+    
+    .feature-card:hover .feature-icon {
+      background: var(--secondary);
+      transform: rotate(10deg) scale(1.1);
+    }
+    
+    .feature-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: var(--primary-dark);
+    }
+    
+    .feature-card p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+    
+    /* Content Sections */
+    .content-section {
+      padding: 100px 0;
+    }
+    
+    .content-section:nth-child(even) {
+      background: var(--light);
+    }
+    
+    .section-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .section-content h2 {
+      font-size: 2.6rem;
+      color: var(--primary-dark);
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 4px solid var(--secondary);
+      display: inline-block;
+    }
+    
+    .section-content p {
+      margin-bottom: 25px;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+    
+    .section-content ul {
+      padding-left: 30px;
+      margin-bottom: 35px;
+    }
+    
+    .section-content li {
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+    
+    .section-content strong {
+      color: var(--primary-dark);
+    }
+    
+    .financial-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 40px 0;
+      box-shadow: var(--shadow-md);
+      border-radius: 12px;
+      overflow: hidden;
+      font-size: 1.1rem;
+    }
+    
+    .financial-table th, 
+    .financial-table td {
+      padding: 18px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .financial-table th {
+      background: var(--primary-light);
+      color: white;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+    
+    .financial-table tr:nth-child(even) {
+      background: #f1f5f9;
+    }
+    
+    .financial-table tr:hover {
+      background: #e2e8f0;
+    }
+    
+    .financial-table ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    
+    /* Contact Section */
+    .contact {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .contact h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    
+    .contact p {
+      max-width: 700px;
+      margin: 0 auto 50px;
+      font-size: 1.3rem;
+      opacity: 0.9;
+      line-height: 1.7;
+    }
+    
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 1.3rem;
+    }
+    
+    .contact-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: var(--transition);
+    }
+    
+    .contact-item:hover .contact-icon {
+      background: var(--secondary);
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 80px 0 40px;
+    }
+    
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      color: var(--secondary);
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 16px;
+    }
+    
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.1rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+      padding-left: 5px;
+    }
+    
+    .footer-social {
+      display: flex;
+      gap: 20px;
+      margin-top: 25px;
+    }
+    
+    .social-link {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: var(--transition);
+      font-size: 18px;
+    }
+    
+    .social-link:hover {
+      background: var(--secondary);
+      transform: translateY(-5px);
+    }
+    
+    .footer-bottom {
+      text-align: center;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      color: #94a3b8;
+      font-size: 1.1rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 1100px) {
+      .hero h1 {
+        font-size: 3.2rem;
+      }
+      
+      .nav-links {
+        gap: 15px;
+      }
+      
+      .nav-buttons .btn {
+        padding: 10px 20px;
+      }
+    }
+    
+    @media (max-width: 900px) {
+      .menu-toggle {
+        display: block;
+      }
+      
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--primary-dark);
+        flex-direction: column;
+        padding: 25px;
+        box-shadow: var(--shadow-lg);
+        gap: 15px;
+      }
+      
+      .nav-links.show {
+        display: flex;
+      }
+      
+      .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        border-radius: 0;
+      }
+      
+      .nav-buttons {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      .hero p {
+        font-size: 1.4rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .section-title h2 {
+        font-size: 2.4rem;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .hero {
+        padding: 100px 0 70px;
+      }
+      
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      
+      .section-content h2 {
+        font-size: 2.2rem;
+      }
+      
+      .feature-card {
+        padding: 40px 25px;
+      }
+      
+      .contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      
+      body {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <div class="logo-text">Circuit<span>Aura</span></div>
+      </div>
+      
+      <nav>
+        <div class="nav-links" id="nav-menu">
+          <a href="#executive-summary">Executive Summary</a>
+          <a href="#company-description">Company</a>
+          <a href="#business-objectives">Objectives</a>
+          <a href="#market-research">Market</a>
+          <a href="#products-services">Services</a>
+        </div>
+        
+        <div class="nav-buttons">
+          <a href="#contact" class="btn btn-outline">Contact Us</a>
+          <a href="#products-services" class="btn btn-primary">Get Quote</a>
+        </div>
+        
+        <button class="menu-toggle" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Premium PCB Assembly Solutions</h1>
+        <p>Delivering high-quality, efficient, and cost-effective PCB solutions with precision and reliability</p>
+        <div class="hero-buttons">
+          <a href="#products-services" class="btn btn-primary">Explore Services</a>
+          <a href="#contact" class="btn btn-outline">Contact Our Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose CircuitAura</h2>
+        <p>We provide comprehensive PCB solutions tailored to your specific requirements with industry-leading expertise</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Fast Turnaround</h3>
+          <p>Quick prototyping and production to meet your deadlines without compromising quality. Our streamlined processes ensure your projects are completed ahead of schedule.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <h3>Quality Assurance</h3>
+          <p>Rigorous testing and inspection to ensure every PCB meets the highest standards. We employ advanced AOI and functional testing for flawless results.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-hand-holding-usd"></i>
+          </div>
+          <h3>Cost-Effective</h3>
+          <p>Competitive pricing without sacrificing quality, perfect for startups and enterprises. Our efficient processes save you money without compromising on excellence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Main Content Sections -->
+  <main>
+    <section id="executive-summary" class="content-section">
+      <div class="container">
+        <div class="section-content">
+          <h2>1. Executive Summary</h2>
+          <p>CircuitAura is a premier PCB assembly company dedicated to providing high-quality, efficient, and cost-effective PCB solutions. Our mission is to deliver top-tier services in PCB assembly, from design and prototyping to mass production, with an emphasis on quality and customer satisfaction.</p>
+          <p>We aim to become a leading name in the PCB assembly industry by consistently exceeding client expectations with innovative and reliable solutions. Our commitment to excellence and customer-focused approach sets us apart in the competitive electronics manufacturing landscape.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="company-description" class="content-section">
+      <div class="container">
+        <div class="section-content">
+          <h2>2. Company Description</h2>
+          <p>CircuitAura offers a comprehensive range of PCB services, including the assembly of single-layer, multi-layer, and flexible PCBs. We provide end-to-end solutions, including design assistance, prototyping, assembly, testing, and final inspection.</p>
+          <p>Our target market includes small to medium-sized enterprises in the electronics industry, as well as innovative startups looking to prototype their designs. With our state-of-the-art facility in Pune, India, we're equipped to handle projects of any complexity with precision and efficiency.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="business-objectives" class="content-section">
+      <div class="container">
+        <div class="section-content">
+          <h2>3. Business Objectives</h2>
+          <ul>
+            <li><strong>Establish a strong customer base</strong> within the first year of operation by delivering exceptional service and quality</li>
+            <li><strong>Deliver high-quality service</strong> to build brand loyalty and achieve a 95% customer retention rate</li>
+            <li><strong>Expand production capabilities</strong> by year three to handle large-scale orders and increase capacity by 200%</li>
+            <li><strong>Develop strategic partnerships</strong> with component suppliers to ensure supply chain resilience and cost efficiency</li>
+            <li><strong>Implement sustainable practices</strong> in our manufacturing processes by year two to reduce environmental impact</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <section id="market-research" class="content-section">
+      <div class="container">
+        <div class="section-content">
+          <h2>4. Market Research & Analysis</h2>
+          <p>The PCB market is experiencing rapid growth with increasing demand across electronics, automotive, and telecommunications sectors. The global PCB market is projected to reach $89.7 billion by 2027, growing at a CAGR of 5.3%.</p>
+          <p>CircuitAura focuses on quality, affordability, and reliable turnaround to maintain a competitive edge. Key market opportunities include:</p>
+          <ul>
+            <li>Growing IoT device market requiring specialized PCBs with advanced capabilities</li>
+            <li>Increased demand for flexible and rigid-flex PCBs in wearable technology</li>
+            <li>Rise of electric vehicles requiring advanced PCBs for battery management systems</li>
+            <li>Expansion of 5G infrastructure needing high-frequency PCBs for next-gen networks</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <section id="products-services" class="content-section">
+      <div class="container">
+        <div class="section-content">
+          <h2>5. Products & Services</h2>
+          <p>CircuitAura provides comprehensive PCB solutions for businesses of all sizes, backed by our expertise and cutting-edge technology:</p>
+          <ul>
+            <li><strong>High-quality PCB assembly:</strong> Single-layer, multi-layer, and flexible PCBs with precision manufacturing</li>
+            <li><strong>Design and prototyping support:</strong> From concept to functional prototype with expert guidance</li>
+            <li><strong>Functional testing and inspection:</strong> Automated optical inspection (AOI), X-ray inspection, and functional testing</li>
+            <li><strong>Component sourcing:</strong> Reliable global supply chain for all your component needs with traceability</li>
+            <li><strong>Custom packaging:</strong> Tailored solutions for safe delivery and storage of sensitive components</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    <section id="financial-plan" class="content-section">
+      <div class="container">
+        <div class="section-content">
+          <h2>8. Financial Plan</h2>
+          <table class="financial-table">
+            <thead>
+              <tr>
+                <th>Financial Aspect</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Initial Capital</td>
+                <td>INR 15,00,000</td>
+              </tr>
+              <tr>
+                <td>Start-up Costs</td>
+                <td>
+                  <ul>
+                    <li>Equipment: INR 7,00,000 (pick-and-place, soldering, testing)</li>
+                    <li>Software and design tools: INR 2,00,000</li>
+                    <li>Operating expenses: INR 5,00,000</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>Revenue Projections (Year 1)</td>
+                <td>INR 10,00,000</td>
+              </tr>
+              <tr>
+                <td>Profit Margin</td>
+                <td>20%</td>
+              </tr>
+              <tr>
+                <td>Projected Growth (Year 2)</td>
+                <td>40% increase in revenue</td>
+              </tr>
+              <tr>
+                <td>Investment Areas</td>
+                <td>
+                  <ul>
+                    <li>Advanced SMT production lines</li>
+                    <li>Enhanced testing equipment</li>
+                    <li>R&D for innovative solutions</li>
+                    <li>Workforce development</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Get in Touch</h2>
+      <p>Ready to discuss your PCB assembly needs? Contact our team today for a personalized consultation</p>
+      
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div>circuitauraelectronics@gmail.com</div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div>+91 9158396417</div>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div>Pune, Maharashtra, India</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>CircuitAura</h3>
+          <p>Providing premium PCB assembly solutions with precision and reliability since 2024. We're committed to innovation and quality in every circuit we assemble.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#executive-summary">Executive Summary</a></li>
+            <li><a href="#company-description">Company Description</a></li>
+            <li><a href="#business-objectives">Business Objectives</a></li>
+            <li><a href="#products-services">Products & Services</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Our Services</h3>
+          <ul class="footer-links">
+            <li><a href="#">PCB Assembly</a></li>
+            <li><a href="#">Prototyping</a></li>
+            <li><a href="#">Testing & Inspection</a></li>
+            <li><a href="#">Component Sourcing</a></li>
+            <li><a href="#">Design Support</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Newsletter</h3>
+          <p>Subscribe to receive updates on our latest services and industry insights.</p>
+          <form>
+            <input type="email" placeholder="Your email address" style="width: 100%; padding: 12px; margin: 15px 0; border-radius: 6px; border: none; font-size: 16px;">
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 16px;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 CircuitAura. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--secondary);"></i> for PCB Excellence</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+    
+    // Close menu when clicking a link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('show');
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 50) {
+        header.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+      } else {
+        header.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05)';
+      }
+    });
+    
+    // Animation on scroll
+    const observerOptions = {
+      threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.feature-card, .section-content').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
